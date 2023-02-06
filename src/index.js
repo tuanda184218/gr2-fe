@@ -10,6 +10,7 @@ import Signup from "./components/Auth/Signup";
 import Login from "./components/Auth/Login";
 import User from "./components/User/User";
 import Admin from "./components/Admin/Admin";
+import Product from "./components/Product/Product";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -23,6 +24,7 @@ root.render(
           <Route index element={<HomePage />} />
           <Route path="users" element={<User />} />
           <Route path="admins" element={<Admin />} />
+          <Route path="products" element={<Product />} />
         </Route>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup />} />

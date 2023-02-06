@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8085/"
+export const API_URL = "http://localhost:8085/"
 
 const postRegister = (username, email, password, role) => {
     return axios.post(API_URL + "api/auth/signup", {
@@ -18,4 +18,40 @@ const postLogin = (username, password) => {
     });
   };
 
-export {postRegister, postLogin};
+  const postCreateProduct = (productName, year, price, url) => {
+    const token = JSON.parse(localStorage.getItem("user")).accessToken;
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    };
+  
+    return axios.post(
+      API_URL + "api/products/insert",
+      {
+        productName: productName,
+        year: year,
+        price: price,
+        url: url,
+      },
+      config
+    );
+  };
+
+  const postImage = (image) => {
+    const token = JSON.parse(localStorage.getItem("user")).accessToken;
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type":"multipart/form-data"
+
+      },
+    };
+    const data = new FormData();
+    data.append("file",image);
+    return axios.post(API_URL + "api/products/FileUpload",data,
+    config
+  );
+}
+
+export {postRegister, postLogin, postCreateProduct, postImage};
