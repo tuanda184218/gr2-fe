@@ -1,0 +1,21 @@
+.manage-user-container{
+    padding: 10px;
+    .users-content{
+        .btn-add-new{
+            margin: 15px 0;
+            border: 1 solid red;
+            color: red;
+        }
+        .table-users-container{
+            .pagination{
+                justify-content: center;
+                gap: 5px;
+            }
+        }
+
+    }
+    .title{
+        font-size: 600;
+        font-weight: 20px;
+    }
+}

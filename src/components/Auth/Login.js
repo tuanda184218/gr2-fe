@@ -52,7 +52,7 @@ const Login = (props) => {
           <input
             type="username"
             className="form-control"
-            placeholder="メールアドレスを入力してください"
+            placeholder="Enter your username"
             value={username}
             onChange={(event) => setUsername(event?.target?.value)}
           />
@@ -63,7 +63,7 @@ const Login = (props) => {
           <input
             type="password"
             className="form-control"
-            placeholder="パスワードを入力してください"
+            placeholder="Enter your password"
             value={password}
             onChange={(event) => setPassword(event?.target?.value)}
           />

@@ -9,7 +9,7 @@ const Signup = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(["user"]);
+  const [role, setRole] = useState(["ROLE_USER"]);
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -67,7 +67,7 @@ const Signup = (props) => {
           <input
             type="text"
             className="form-control"
-            placeholder="お名前を入力してください"
+            placeholder="Enter your username"
             value={username}
             onChange={(event) => setUsername(event?.target?.value)}
           />
@@ -77,7 +77,7 @@ const Signup = (props) => {
           <input
             type="email"
             className="form-control"
-            placeholder="メールアドレスを入力してください"
+            placeholder="Enter your email"
             value={email}
             onChange={(event) => setEmail(event?.target?.value)}
           />
@@ -88,19 +88,10 @@ const Signup = (props) => {
           <input
             type="password"
             className="form-control"
-            placeholder="パスワードを入力してください"
+            placeholder="*******"
             value={password}
             onChange={(event) => setPassword(event?.target?.value)}
           />
-        </div>
-        <div className="form-group">
-          <label>Role</label>
-          <select className="form-select">
-            <option selected value="user">
-              USER
-            </option>
-            <option value="mod">MODERATOR</option>
-          </select>
         </div>
 
         <button type="submit" className="button" onClick={() => handleSignup()}>

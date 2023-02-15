@@ -3,12 +3,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { GrAdd } from "react-icons/gr";
-import "./Product.scss";
+import './ManageProduct.scss'
 import { useNavigate } from "react-router-dom";
-import { postCreateProduct, postImage } from "../../services/apiService";
-import { API_URL } from "../../services/apiService";
+import { postCreateProduct, postImage } from "../../../services/apiService";
+import { API_URL } from "../../../services/apiService";
 
-const Product = (props) => {
+const AddProduct = (props) => {
   //   const { show, setShow } = props
   const navigate = useNavigate();
   const [show, setShow] = useState("");
@@ -86,13 +86,13 @@ const Product = (props) => {
         <GrAdd className="add-botton" />
         ADD A NEW PRODUCT
       </Button>
-      <Modal show={show} onHide={handleClose} className="modal-add-product">
+      <Modal show={show} onHide={handleClose}  size="xl" backdrop="static" className="modal-add-product">
         <Modal.Header closeButton>
           <Modal.Title>CREATE A NEW PRODUCT</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row g-3">
-            <div className="col-12">
+            <div className="col-6">
               <label className="form-label">Name</label>
               <input
                 type="productName"
@@ -101,7 +101,7 @@ const Product = (props) => {
                 onChange={(event) => setProductName(event?.target?.value)}
               />
             </div>
-            <div className="col-12">
+            <div className="col-6">
               <label className="form-label">Price</label>
               <input
                 type="text"
@@ -110,7 +110,7 @@ const Product = (props) => {
                 onChange={(event) => setPrice(event?.target?.value)}
               />
             </div>
-            <div className="col-12">
+            <div className="col-6">
               <label className="form-label">Year</label>
               <input
                 type="year"
@@ -167,4 +167,4 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+export default AddProduct;

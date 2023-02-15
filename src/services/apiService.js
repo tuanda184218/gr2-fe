@@ -54,4 +54,76 @@ const postLogin = (username, password) => {
   );
 }
 
-export {postRegister, postLogin, postCreateProduct, postImage};
+const postCreateUser = (username, email, password, role) => {
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.post(
+    API_URL + "api/users/create",
+    {
+      username: username,
+      email: email,
+      password: password,
+      role: role,
+    },
+    config
+  );
+};
+
+const getAllUsers = () =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.get(
+    API_URL + "api/users/",
+    config
+  );
+}
+
+const putUpdateUser = (userId, email, role) =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    // params: {id: userId}
+  };
+
+  return axios.put(
+    API_URL + "api/users/" + userId,
+    {
+      email: email,
+      role: role
+    },
+    config
+  );
+
+}
+
+const deleteUser = (userId) =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.delete(
+    API_URL + "api/users/" + userId,
+    config
+  );
+
+}
+
+
+
+
+export {postRegister, postLogin, postCreateProduct, postImage, postCreateUser, getAllUsers, putUpdateUser, deleteUser};
