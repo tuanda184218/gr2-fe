@@ -3,43 +3,48 @@ import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../services/apiService";
 import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
+import {ImSpinner10} from "react-icons/im";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
     //validate
     if (!username) {
-      alert("Username can not be blank!");
+      toast.warn("Username can not be blank!");
       return;
     }
 
     if (!password) {
-      alert("Password can not be blank!");
+      toast.warn("Password can not be blank!");
       return;
     }
+
+    setIsLoading(true);
 
     //submit api
 
     try {
       let res = await postLogin(username, password);
-      dispatch({
-        type: "FETCH_USER_LOGIN_SUCCESS",
-        payload: res,
-      });
+      dispatch(doLogin(res));
 
       if (res.data && res.status === 200) {
         localStorage.setItem("user", JSON.stringify(res.data));
-        alert("Login successfully");
+        toast.success("Login successfully");
+        setIsLoading(false);
         setTimeout(function () {
           return navigate("/");
-        }, 1000);
+        }, 2000);
       }
     } catch (err) {
-      alert("Username or password is not correct!");
+      setIsLoading(false);
+      toast.error("Username or password is not correct!");
     }
   };
 
@@ -69,8 +74,9 @@ const Login = (props) => {
           />
         </div>
 
-        <button type="submit" className="button" onClick={() => handleLogin()}>
-          Login
+        <button type="submit" className="button" onClick={() => handleLogin()} disabled={isLoading}>
+          {isLoading === true && <ImSpinner10 className="loader-icon"/>}
+          <span>Login</span>
         </button>
         <p className="forgot-password">
           <Link to={"/reset-pass"}>Password forgot?</Link>

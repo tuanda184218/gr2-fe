@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-const TableUserPaginage = (props) => {
-    const { listUsers } = props;
+const TableProductPaginage = (props) => {
+    const { listProducts } = props;
 
     const [perPage, setPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -11,7 +11,7 @@ const TableUserPaginage = (props) => {
       setCurrentPage(selected);
     };
   
-    const currentUsers = listUsers.slice(currentPage * perPage, (currentPage + 1) * perPage);
+    const currentUsers = listProducts.slice(currentPage * perPage, (currentPage + 1) * perPage);
   
   
     return (
@@ -20,9 +20,9 @@ const TableUserPaginage = (props) => {
           <thead>
             <tr>
               <th scope="col">No</th>
-              <th scope="col">username</th>
-              <th scope="col">email</th>
-              <th scope="col">role</th>
+              <th scope="col">ProductName</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
             </tr>
           </thead>
           <tbody>
@@ -30,14 +30,11 @@ const TableUserPaginage = (props) => {
               currentUsers.length > 0 &&
               currentUsers.map((item, index) => {
                 return (
-                  <tr key={`table-users-${index}`}>
+                  <tr key={`table-products-${index}`}>
                     <th>{index + 1}</th>
-                    <td>{item.username}</td>
-                    <td>{item.email}</td>
-                    <td>
-                      {item.roles.map((i, index) => {
-                        return <div key={i.id}>{i.name} </div>;
-                      })}
+                    <td>{item.productName}</td>
+                    <td>{item.description}</td>
+                    <td>{item.price}
                     </td>
                     <td>
                       <button
@@ -59,7 +56,7 @@ const TableUserPaginage = (props) => {
                   </tr>
                 );
               })}
-            {listUsers && listUsers.length === 0 && (
+            {listProducts && listProducts.length === 0 && (
               <tr>
                 <td colSpan={"4"}>Not found data</td>
               </tr>
@@ -70,7 +67,7 @@ const TableUserPaginage = (props) => {
              previousLabel={'previous'}
              nextLabel={'next'}
              breakLabel={'...'}
-             pageCount={Math.ceil(listUsers.length / perPage)}
+             pageCount={Math.ceil(listProducts.length / perPage)}
              marginPagesDisplayed={2}
              pageRangeDisplayed={5}
              onPageChange={handlePageChange}
@@ -82,5 +79,5 @@ const TableUserPaginage = (props) => {
     );
   };
   
-  export default TableUserPaginage;
+  export default TableProductPaginage;
   

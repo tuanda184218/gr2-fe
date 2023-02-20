@@ -1,6 +1,5 @@
 import AddUser from "./AddUser";
 import "./ManageUser.scss";
-import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiService";
 import UpdateUser from "./UpdateUser";
@@ -62,14 +61,7 @@ const ManageUser = (props) => {
             ADD A NEW USER
           </button>
         </div>
-        {/* <AddUser fetchListUsers={fetchListUsers} /> */}
         <div className="table-users-container">
-          {/* <TableUser
-            listUsers={listUsers}
-            handleClickBtnUpdate={handleClickBtnUpdate}
-            handleClickBtnView={handleClickBtnView}
-            handleClickBtnDelete={handleClickBtnDelete}
-          /> */}
           <TableUserPaginage
             listUsers={listUsers}
             handleClickBtnUpdate={handleClickBtnUpdate}

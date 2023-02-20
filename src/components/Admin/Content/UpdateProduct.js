@@ -1,32 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { FcPlus } from "react-icons/fc";
-import './ManageProduct.scss';
-import { useSelector } from "react-redux";
-import _ from "lodash";
-import { postCreateProduct } from "../../../services/apiService";
+import { putUpdateProduct } from "../../../services/apiService";
 import { toast } from "react-toastify";
+import {FcPlus} from "react-icons/fc";
+import _ from "lodash";
+import './ManageProduct.scss';
 
-const AddProduct = (props) => {
-  const { show, setShow } = props
-  const account = useSelector(state => state.user.account)
-  const userId = account.id;
+const UpdateProduct = (props) => {
+  const { show, setShow, dataUpdate } = props;
+
   const handleClose = () => {
     setShow(false);
     setProductName("");
-    setPrice("");
     setDescription("");
+    setPrice("");
     setImage("");
     setPreviewImage("");
   };
 
+  const [productID, setProductId] = useState("");
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [previewImage, setPreviewImage] = useState("");
- 
 
   const handleUploadImage = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
@@ -37,47 +35,75 @@ const AddProduct = (props) => {
     }
   };
 
-  const handleSubmitCreateProduct = async () => {
+
+  useEffect(() => {
+    if (!_.isEmpty(dataUpdate)) {
+      setProductId(dataUpdate.id);
+      setProductName(dataUpdate.productName);
+      setDescription(dataUpdate.description);
+      setPrice(dataUpdate.price);
+      setImage(dataUpdate.image);
+      setPreviewImage(dataUpdate.image);
+    }
+  }, [props.show]);
+
+
+  const handleSubmitUpdateUser = async () => {
     //validate
     if (!productName) {
-      alert("Name is not blanked!");
-      return;
-    }
-    if (!price) {
-      alert("Price is not blanked!");
+      alert("ProductName is not blank!");
       return;
     }
     if (!description) {
-      alert("Year is not blanked!");
+      alert("Description is invalid!");
       return;
     }
-    if (!image) {
-      alert("Image is not blanked!");
+    if (!price) {
+      alert("Price is not blank!");
       return;
     }
 
+    if (!image) {
+        alert("Image is not blank!");
+        return;
+    }
+
+    //call api
     try {
-     let res = await postCreateProduct(userId,productName,description,price,image)
-     if(res && res.data && res.status === 200){
-      toast.success(res.data.message);
-      handleClose();
-      await props.fetchListProduct();
-     }
+      let res = await putUpdateProduct(
+        productID,
+        productName,
+        description,
+        price,
+        image
+      );
+      if (res.data && res.status === 200) {
+        toast.success("Update product successfully");
+        handleClose();
+        await props.fetchListProduct();
+      }
     } catch (err) {
-      alert("Create product failed!");
+      console.log(err);
+      alert("Username or email existed!");
     }
   };
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}  size="xl" backdrop="static" className="modal-add-product">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="xl"
+        backdrop="static"
+        className="modal-add-product"
+      >
         <Modal.Header closeButton>
-          <Modal.Title>CREATE A NEW PRODUCT</Modal.Title>
+          <Modal.Title>UPDATE PRODUCT</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <form className="row g-3">
+        <Modal.Body className="modal-body">
+          <form className="row g-3 form-group">
             <div className="col-6">
-              <label className="form-label">Name</label>
+              <label className="form-label">ProductName</label>
               <input
                 type="productName"
                 className="form-control"
@@ -94,6 +120,7 @@ const AddProduct = (props) => {
                 onChange={(event) => setDescription(event?.target?.value)}
               />
             </div>
+
             <div className="col-6">
               <label className="form-label">Price</label>
               <input
@@ -132,7 +159,7 @@ const AddProduct = (props) => {
           <Button
             variant="primary"
             onClick={() => {
-              handleSubmitCreateProduct();
+              handleSubmitUpdateUser();
             }}
           >
             Save
@@ -143,4 +170,4 @@ const AddProduct = (props) => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

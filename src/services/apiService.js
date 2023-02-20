@@ -18,41 +18,29 @@ const postLogin = (username, password) => {
     });
   };
 
-  const postCreateProduct = (productName, year, price, url) => {
-    const token = JSON.parse(localStorage.getItem("user")).accessToken;
-    let config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    };
-  
-    return axios.post(
-      API_URL + "api/products/insert",
-      {
-        productName: productName,
-        year: year,
-        price: price,
-        url: url,
-      },
-      config
-    );
-  };
-
-  const postImage = (image) => {
+  const postCreateProduct = (userId, productName, description, price, image) => {
     const token = JSON.parse(localStorage.getItem("user")).accessToken;
     let config = {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type":"multipart/form-data"
-
       },
     };
+
     const data = new FormData();
-    data.append("file",image);
-    return axios.post(API_URL + "api/products/FileUpload",data,
-    config
-  );
-}
+    data.append("userId",userId);
+    data.append("productName",productName);
+    data.append("description",description);
+    data.append("price",price);
+    data.append("image",image);
+  
+    return axios.post(
+      API_URL + "api/products/",
+        data,
+      config
+    );
+  };
+
 
 const postCreateUser = (username, email, password, role) => {
   const token = JSON.parse(localStorage.getItem("user")).accessToken;
@@ -123,7 +111,61 @@ const deleteUser = (userId) =>{
 
 }
 
+const getAllProducts = () => {
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.get(
+    API_URL + "api/products",
+    config
+  );
+
+}
+
+const putUpdateProduct = (productId, productName, description, price, image) =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type":"multipart/form-data"
+    },
+  };
+
+  
+  const data = new FormData();
+  data.append("productName",productName);
+  data.append("description",description);
+  data.append("price",price);
+  data.append("image",image);
+
+  return axios.put(
+    API_URL + "api/products/" + productId,
+    data,
+    config
+  );
+
+}
+
+
+const deleteProduct = (productId) =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.delete(
+    API_URL + "api/products/" + productId,
+    config
+  );
+
+}
 
 
 
-export {postRegister, postLogin, postCreateProduct, postImage, postCreateUser, getAllUsers, putUpdateUser, deleteUser};
+export {postRegister, postLogin, postCreateProduct, postCreateUser, getAllUsers, putUpdateUser, deleteUser, getAllProducts, putUpdateProduct, deleteProduct};

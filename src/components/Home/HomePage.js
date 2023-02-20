@@ -1,9 +1,9 @@
-// import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import videoHomepage from '../../assets/video-homepage.webm'
 
 const HomePage = (props) =>{
-    // const account = useSelector(state => state.user.account)
-    // const isAuthenticated = useSelector(state => state.user.isAuthenticated )
+    const account = useSelector(state => state.user.account)
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated )
     return(
         <div className="homepage-container">
             <video autoPlay muted loop>

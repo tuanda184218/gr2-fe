@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { toast } from "react-toastify";
 import _ from "lodash";
 
 const ViewUser = (props) => {

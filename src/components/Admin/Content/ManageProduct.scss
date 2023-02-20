@@ -1,6 +1,20 @@
 .manage-product-container{
     .products-content{
-
+        .btn-add-new{
+            margin: 15px 0;
+            border: 1 solid red;
+            color: red;
+        }
+        .table-products-container{
+            .pagination{
+                justify-content: center;
+                gap: 5px;
+            }
+        }
+    }
+    .title{
+        font-size: 600;
+        font-weight: 20px;
     }
 }
 
