@@ -166,6 +166,41 @@ const deleteProduct = (productId) =>{
 
 }
 
+const postLogout = () =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.post(
+    API_URL + "api/auth/logout",
+    config
+  );
+
+}
 
 
-export {postRegister, postLogin, postCreateProduct, postCreateUser, getAllUsers, putUpdateUser, deleteUser, getAllProducts, putUpdateProduct, deleteProduct};
+const getTotalUsersProducts = () =>{
+  const token = JSON.parse(localStorage.getItem("user")).accessToken;
+  let config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+
+  return axios.get(
+    API_URL + "api/users/stats",
+    config
+  );
+
+}
+
+
+
+
+
+
+
+export {postRegister, postLogin, postLogout, postCreateProduct, postCreateUser, getAllUsers, putUpdateUser, deleteUser, getAllProducts, putUpdateProduct, deleteProduct, getTotalUsersProducts};

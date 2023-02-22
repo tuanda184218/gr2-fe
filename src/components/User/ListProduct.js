@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllProducts} from "../../services/apiService";
 import '../../App.scss';
+import { toast } from "react-toastify";
 
 const ListProduct = (props) => {
   const [arrProduct, setArrProduct] = useState();
@@ -16,7 +17,7 @@ const ListProduct = (props) => {
         setArrProduct(res.data);
       }
     } catch (err) {
-      alert("Get data product failed");
+      toast.error("Get data product failed");
     }
   };
   
@@ -34,7 +35,7 @@ const ListProduct = (props) => {
                   <p className="card-text">
                     {item.price}đ
                   </p>
-                  <a href="#" className="btn btn-primary">
+                  <a href="#" className="btn btn-primary btn-view-detail">
                     View detail
                   </a>
                 </div>

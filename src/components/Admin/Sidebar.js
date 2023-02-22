@@ -47,8 +47,8 @@ const Sidebar = ({collapsed, toggled, handleToggleSidebar}) => {
                         // suffix={<span className='badge red'>NEW</span>}
                         >
                             Dashboard
-                            {/* <Link to= "/admins"/> */}
-                            <Link to= "/"/>
+                            <Link to= "/admins"/>
+                            {/* <Link to= "/"/> */}
                         </MenuItem>
                     </Menu>
                     <Menu iconShape='circle'>

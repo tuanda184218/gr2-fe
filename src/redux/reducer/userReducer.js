@@ -1,4 +1,4 @@
-import { FETCH_USER_LOGIN_SUCCESS } from "../action/userAction";
+import { FETCH_USER_LOGIN_SUCCESS, USER_LOGOUT_SUCCESS } from "../action/userAction";
 
 const INITIAL_STATE = {
     account: {
@@ -26,6 +26,18 @@ const INITIAL_STATE = {
           },
           isAuthenticated: true,
         };
+      case USER_LOGOUT_SUCCESS:
+        return{
+          ...state, account: {
+            id: 0,
+            email: "",
+            username: "",
+            token: "",
+            roles: [],
+          },
+          isAuthenticated: false,
+        }
+
       default: {
         return state; // We return the default state here
       }

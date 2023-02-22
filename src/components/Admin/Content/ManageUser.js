@@ -7,6 +7,7 @@ import { GrAdd } from "react-icons/gr";
 import ViewUser from "./ViewUser";
 import DeleteUser from "./DeleteUser";
 import TableUserPaginage from "./TableUserPaginage";
+import { toast } from "react-toastify";
 
 const ManageUser = (props) => {
   const [showCreateUser, setShowCreateUser] = useState(false);
@@ -44,7 +45,7 @@ const ManageUser = (props) => {
         setListUsers(res.data);
       }
     } catch (err) {
-      alert("Something wrong!");
+      toast.error("Something wrong!");
     }
   };
 

@@ -48,6 +48,12 @@ const Login = (props) => {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if(event && event.key === "Enter"){
+      handleLogin();
+    }
+  }
+
   return (
     <div className="signin-container">
       <div className="header col-4 mx-auto">LOGIN</div>
@@ -71,6 +77,7 @@ const Login = (props) => {
             placeholder="Enter your password"
             value={password}
             onChange={(event) => setPassword(event?.target?.value)}
+            onKeyDown={(event)=>handleKeyDown(event)}
           />
         </div>
 

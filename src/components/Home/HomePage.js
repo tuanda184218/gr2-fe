@@ -1,9 +1,8 @@
-import {useSelector} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import videoHomepage from '../../assets/video-homepage.webm'
 
 const HomePage = (props) =>{
-    const account = useSelector(state => state.user.account)
-    const isAuthenticated = useSelector(state => state.user.isAuthenticated )
+    const navigate = useNavigate();
     return(
         <div className="homepage-container">
             <video autoPlay muted loop>
@@ -17,7 +16,7 @@ const HomePage = (props) =>{
                 <div className="title-1">Enjoying a satisfying shopping experience</div>
                 <div className="title-2">Don't worry about the dress problem, come to my-app, we will solve it for you</div>
                 <div className="title-3">
-                    <button>Let's go</button>
+                    <button onClick={()=> {navigate("/users")}}>Let's go</button>
                 </div>
             </div>
         </div>

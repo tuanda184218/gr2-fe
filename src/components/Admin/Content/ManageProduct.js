@@ -6,6 +6,7 @@ import { getAllProducts } from "../../../services/apiService";
 import UpdateProduct from "./UpdateProduct";
 import DeleteProduct from "./DeleteProduct";
 import ViewProduct from "./ViewProduct";
+import { toast } from "react-toastify";
 
 const ManageProduct = (props) => {
   const [showCreateProduct, setShowCreateProduct] = useState(false);
@@ -44,7 +45,7 @@ const ManageProduct = (props) => {
         setListProducts(res.data);
       }
     }catch(err){
-      alert("Get data product failed");
+      toast.error("Get data product failed");
     }
   }
    return (

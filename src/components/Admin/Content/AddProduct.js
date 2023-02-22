@@ -40,19 +40,19 @@ const AddProduct = (props) => {
   const handleSubmitCreateProduct = async () => {
     //validate
     if (!productName) {
-      alert("Name is not blanked!");
+      toast.warn("Name is not blanked!");
       return;
     }
     if (!price) {
-      alert("Price is not blanked!");
+      toast.warn("Price is not blanked!");
       return;
     }
     if (!description) {
-      alert("Year is not blanked!");
+      toast.warn("Year is not blanked!");
       return;
     }
     if (!image) {
-      alert("Image is not blanked!");
+      toast.warn("Image is not blanked!");
       return;
     }
 
@@ -64,7 +64,7 @@ const AddProduct = (props) => {
       await props.fetchListProduct();
      }
     } catch (err) {
-      alert("Create product failed!");
+      toast.error("Create product failed!");
     }
   };
 

@@ -51,20 +51,20 @@ const UpdateProduct = (props) => {
   const handleSubmitUpdateUser = async () => {
     //validate
     if (!productName) {
-      alert("ProductName is not blank!");
+      toast.warn("ProductName is not blank!");
       return;
     }
     if (!description) {
-      alert("Description is invalid!");
+      toast.warn("Description is invalid!");
       return;
     }
     if (!price) {
-      alert("Price is not blank!");
+      toast.warn("Price is not blank!");
       return;
     }
 
     if (!image) {
-        alert("Image is not blank!");
+        toast.warn("Image is not blank!");
         return;
     }
 
@@ -84,7 +84,7 @@ const UpdateProduct = (props) => {
       }
     } catch (err) {
       console.log(err);
-      alert("Username or email existed!");
+      toast.error("Username or email existed!");
     }
   };
 

@@ -17,7 +17,6 @@ const ViewUser = (props) => {
   const [password, setPassword] = useState("");
   const [roles, setRoles] = useState([]);
 
-  const [isShowPassword, setIsShowPassword] = useState(false);
 
   useEffect(() => {
     if (!_.isEmpty(dataView)) {

@@ -18,7 +18,6 @@ const ViewProduct = (props) => {
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
   const [previewImage, setPreviewImage] = useState("");
 
 

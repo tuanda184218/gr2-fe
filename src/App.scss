@@ -18,23 +18,26 @@ body{
           display: flex;
           justify-content: space-around;
           margin: 20px;
-          // border: 1px solid blue;
           flex-wrap: wrap;
           align-content: flex-start;
           .card{
             width: 300px;
             height: 450px;
             align-items: center;
+            padding: 10px 10px;
               .card-img-top{
                 padding: 3px 3px;
                 height: 400px;
-                // border: 1px solid yellow;
-                border-radius: 5px;
               }
             .card-body{
-              // align-items: center;
               .card-text{
-                border: 1px solid red;
+                
+              }
+              .btn-view-detail{
+
+                &:hover{
+                  background-color: #2f4f4f;
+                }
               }
             }
           }

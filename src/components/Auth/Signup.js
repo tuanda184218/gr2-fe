@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.scss";
 import { postRegister } from '../../services/apiService'
-// import { ToastContainer, toast } from 'react-toastify'
-// import 'react-toastify/dist/ReactToastify.css'   
+import { toast } from "react-toastify";
 
 const Signup = (props) => {
   const [username, setUsername] = useState("");
@@ -23,21 +22,18 @@ const Signup = (props) => {
   const handleSignup = async () => {
     //validate
     if (!username) {
-      //   toast.warn('お名前を空白にすることはできません!')
-      alert("Username can not be blanked!");
+      toast.warn("Username can not be blanked!");
       return;
     }
 
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      //   toast.error('無効な電子メール!')
-      alert("Invalid email!");
+      toast.warn("Invalid email!");
       return;
     }
 
     if (!password) {
-      //   toast.warn('パスワードを空白にすることはできません!')
-      alert("Password can not be blanked!");
+      toast.warn("Password can not be blanked!");
       return;
     }
 
@@ -47,14 +43,13 @@ const Signup = (props) => {
         
         if (res.data && res.status === 200) 
         {
-        //   localStorage.setItem('user', JSON.stringify(res.data))
-            alert("Register successfully!");
+            toast.success("Register successfully!");
             setTimeout(function () {
             return navigate('/login')
           }, 1000)
         }
       } catch (err) {
-        alert('Username or email is existed!')
+        toast.error('Username or email is existed!')
       }
   };
 

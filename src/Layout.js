@@ -10,6 +10,7 @@ import Dashboard from './components/Admin/Content/Dashboard';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ListProduct from "./components/User/ListProduct";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const Layout = () => {
   return (
@@ -17,9 +18,9 @@ const Layout = () => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-          <Route path="users" element={<ListProduct />} />
+          <Route path="users" element={ <PrivateRoute><ListProduct /></PrivateRoute>}/>
         </Route>
-        <Route path="admins" element={<Admin />}>
+        <Route path="admins" element={<PrivateRoute><Admin /></PrivateRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="manage-users" element={<ManageUser />} />
           <Route path="manage-products" element={<ManageProduct />} />

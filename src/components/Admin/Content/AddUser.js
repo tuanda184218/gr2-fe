@@ -38,24 +38,24 @@ const AddUser = (props) => {
     const isValidEmail = validateEmail(email);
     //validate
     if (!username) {
-      alert("Username is not blank!");
+      toast.warn("Username is not blank!");
       return;
     }
     if (!isValidEmail) {
-      alert("Email is invalid!");
+      toast.warn("Email is invalid!");
       return;
     }
     if (!password) {
-      alert("Password is not blank!");
+      toast.warn("Password is not blank!");
       return;
     } else {
       if (password !== confirmPassword) {
-        alert("Confirm password is not correct!");
+        toast.warn("Confirm password is not correct!");
         return;
       }
     }
     if (!roles) {
-      alert("Role is not blank!");
+      toast.warn("Role is not blank!");
       return;
     }
 
@@ -71,7 +71,7 @@ const AddUser = (props) => {
       }
     } catch (err) {
       console.log(err);
-      alert("Username or email existed!");
+      toast.error("Username or email existed!");
     }
   };
 

@@ -30,7 +30,7 @@ const DeleteUser = (props) => {
             await props.fetchListUsers();
         }
     } catch(err){
-        alert("Something wrong!")
+        toast.error("Something wrong!")
     }
   }
 

@@ -30,7 +30,7 @@ const DeleteProduct = (props) => {
             await props.fetchListProduct();
         }
     } catch(err){
-        alert("Something wrong!")
+        toast.error("Something wrong!")
     }
   }
 
